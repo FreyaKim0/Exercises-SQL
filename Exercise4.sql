@@ -51,7 +51,7 @@ create sequence  order_history_seq;
 -- Index: for search price ragne of product
 create index price_index on sale_item (upper(cost));
 
--- Trigger1: trace all buyer's actuion
+-- Trigger1: trace all buyer's action
 create or replace trigger buyer_history_trigger
 after
 insert or

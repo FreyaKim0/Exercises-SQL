@@ -34,5 +34,3 @@ where total_app_num = (select min(total_app_num) from
 (select x.crime_id,y.appeal_numbers from crimes x left join 
 (select a.crime_id,b.appeal_numbers from appeals a,(select appeal_id , count(appeal_id) as appeal_numbers from appeals group by appeal_id)b 
 where a.appeal_id=b.appeal_id)y on x.crime_id = y.crime_id) group by crime_id));
-
-

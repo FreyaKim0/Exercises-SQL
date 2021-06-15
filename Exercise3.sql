@@ -1,11 +1,9 @@
---Hand on practice 9-9 
---Tracking Pledge Payment activity each time a pledge payment is added, changed, or removed.
-
+--Q1: Tracking Pledge Payment activity each time a pledge payment is added, changed, or removed.
 drop table dd_paytrack;
 drop sequence dd_ptrack_seq;
 drop trigger pledge_pay_trigger;
 
---1) create a table named DD_PAYTRACK to hold this information. 
+--1-1) create a table named DD_PAYTRACK to hold this information. 
 create table dd_paytrack(
 idtrack number primary key,
 user_name varchar2(30),
@@ -14,10 +12,10 @@ action_taken varchar2(30),
 idpay number(6,0)
 );
 
---2) create a new sequence named DD_PTRACK_SEQ for the primary key column. 
+--1-2) create a new sequence named DD_PTRACK_SEQ for the primary key column. 
 create sequence dd_ptrack_seq;
 
---3) create a single trigger for recording the requested information to track pledge payment activity.
+--1-3) create a single trigger for recording the requested information to track pledge payment activity.
 create or replace trigger pledge_pay_trigger
 after
 insert or
@@ -54,7 +52,7 @@ values(dd_ptrack_seq.nextval,user,to_char(sysdate,'DD-MON-YY'),this_action,this_
 end pledge_pay_trigger;
 /
 
---4) test the trigger
+--1-4) test the trigger
 insert into dd_payment(idpay, idpledge, payamt, paydate, paymethod)
 values (9999, 105, 250, sysdate, 'CC');
 commit;
@@ -67,15 +65,10 @@ commit;
 
 select * from dd_paytrack;
 
-
-
-
---Hand on practice 9-10
---Identifying if it's the first pledges the DD_PLEDGE table contains the FIRSTPLEDGE column that indicates whether a pledge is the donor’s first pledge. 
-
+--Q2: Identifying if it's the first pledges the DD_PLEDGE table contains the FIRSTPLEDGE column that indicates whether a pledge is the donor’s first pledge. 
 drop trigger first_or_not_trigger;
 
---1) create a trigger that adds the corresponding data to the FIRSTPLEDGE column when a new pledge is added
+--2-1) create a trigger that adds the corresponding data to the FIRSTPLEDGE column when a new pledge is added
 create or replace trigger first_or_not_trigger 
 before 
 insert 
@@ -98,9 +91,7 @@ begin
 end first_or_not_trigger;
 /
 
-
---2) test the trigger.
-
+--2-2) test the trigger.
 -- case:  idproj=500  is 'NOT' the first pledge 
 insert into dd_pledge(idpledge, iddonor, pledgedate, pledgeamt,idproj, idstatus,writeoff,paymonths,campaign)
 values (113,309,sysdate,2000,500,10,null,12,738);

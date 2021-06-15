@@ -1,4 +1,4 @@
---Assignment 5-10 test
+--A5-10 test
 set serveroutput on;
 declare
 result ddproject%rowtype;
@@ -7,7 +7,7 @@ ddproj_sp(101,result);
 dbms_output.put_line(result.id||' '||result.name||' '||result.budjet);
 end;
 
---Assignment 5-11 test
+--A5-11 test
 set serveroutput on;
 declare
 result boolean;
@@ -22,7 +22,7 @@ end if;
  dbms_output.put_line(' an active pledge.');
 end;
 
---Assignment 5-12 test
+--A5-12 test
 set serveroutput on;
 begin
   ddckpay_sp(20, 104);  -- correct amount
@@ -32,7 +32,7 @@ exception when others then
   dbms_output.put_line('An error occured.');
 end;
 
---Assignment 5-13 test
+--A5-13 test
 set serveroutput on;
 declare
   amount number;
@@ -42,4 +42,3 @@ begin
   ddckbal_sp(103, amount, paid, remaining);
   dbms_output.put_line('Amount: ' || amount || ', Paid: ' || paid || ', Remaining: ' || remaining);
 end;
-
