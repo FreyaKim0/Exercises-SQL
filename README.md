@@ -5,7 +5,7 @@
 * Sequence : generate order history id
 * Index : search product price range
 * Trigger : Trace all buyers' actions
-* Test
+* Test case
 -------------------------------------------------------------
 **[Exercise 3]**<br>Practice scope:
 * Sequence
